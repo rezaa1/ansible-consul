@@ -87,12 +87,13 @@
     - not bootstrap_state.stat.exists | bool
     - consul_node_role == 'server'
 
-- name: Create ACL policy configuration
-  template:
-    src: configd_50acl_policy.hcl.j2
-    dest: "{{ consul_configd_path }}/50acl_policy.hcl"
-    owner: "{{ consul_user }}"
-    group: "{{ consul_group }}"
-  notify:
-    - restart consul
-  when: consul_acl_policy | bool
+# This file cause consul fail to start.
+#- name: Create ACL policy configuration
+#  template:
+#    src: configd_50acl_policy.hcl.j2
+#    dest: "{{ consul_configd_path }}/50acl_policy.hcl"
+#    owner: "{{ consul_user }}"
+#    group: "{{ consul_group }}"
+#  notify:
+#    - restart consul
+#  when: consul_acl_policy | bool
